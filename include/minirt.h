@@ -6,7 +6,7 @@
 /*   By: smallem <smallem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 21:07:02 by musenov           #+#    #+#             */
-/*   Updated: 2023/10/21 20:19:13 by smallem          ###   ########.fr       */
+/*   Updated: 2023/10/26 16:57:52 by smallem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,65 +29,54 @@
 # include "../libft/libft.h"
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 
-
-typedef struct s_alight
-{
-	float	lratio;
-	int	red;
-	int	blue;
-	int	green;
-}	t_alight;
-
-typedef struct s_camera
+typedef struct s_vec3
 {
 	float	x;
 	float	y;
 	float	z;
-	float	vector[3];
+}	t_vec3;
+
+
+typedef struct s_alight
+{
+	float	lratio;
+	t_vec3	rgb;
+}	t_alight;
+
+typedef struct s_camera
+{
+	t_vec3	pos;
+	t_vec3	vector;
 	int		view_field;
 }	t_camera;
 
 typedef struct s_light
 {
-	float	x;
-	float	y;
-	float	z;
+	t_vec3	pos;
 	float	lbratio;
 }	t_light;
 
 typedef struct s_sphere
 {
-	float	x;
-	float	y;
-	float	z;
+	t_vec3	pos;
+	t_vec3	rgb;
 	float	diameter;
-	int	red;
-	int	blue;
-	int	green;
 }	t_sphere;
 
 typedef struct s_plane
 {
-	float	x;
-	float	y;
-	float	z;
-	float	vector[3];
-	int	red;
-	int	blue;
-	int	green;
+	t_vec3	pos;
+	t_vec3	vector;
+	t_vec3	rgb;
 }	t_plane;
 
 typedef struct s_cylinder
 {
-	float	x;
-	float	y;
-	float	z;
-	float	vector[3];
+	t_vec3	pos;;
+	t_vec3	vector;
+	t_vec3	rgb;
 	float	diameter;
 	float	height;
-	int	red;
-	int	blue;
-	int	green;
 }	t_cylinder;
 
 typedef struct s_data
@@ -107,7 +96,7 @@ void	ft_ex(int ex_stat, char *str, t_data *data, char **ptr);
 void	free_data(t_data *data);
 void	free_split(char **mat);
 
-t_cylinder	*init_alight(char **param, t_data *data);
+t_cylinder	*init_cylinder(char **param, t_data *data);
 t_alight	*init_alight(char **param, t_data *data);
 t_camera	*init_camera(char **param, t_data *data);
 t_light	*init_light(char **param, t_data *data);
