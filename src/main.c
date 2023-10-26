@@ -6,7 +6,7 @@
 /*   By: smallem <smallem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 17:35:26 by smallem           #+#    #+#             */
-/*   Updated: 2023/10/21 19:31:32 by smallem          ###   ########.fr       */
+/*   Updated: 2023/10/26 20:12:12 by smallem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,11 @@ int	main(int argc, char **argv)
 	fd = open_file(argv[1]);
 	if (!fd)
 		ft_ex(1, "Bad file", NULL, NULL);
-		
+	check_input(fd, &data, argv[1]);
+	// print_data(&data);
+	data.win = mlx_init(WIDTH, HEIGHT, "Mini_Rt", false);
+	render(&data);
+	mlx_key_hook(data.win, events, &data);
+	mlx_loop(data.win);
+	mlx_terminate(data.win);
 }

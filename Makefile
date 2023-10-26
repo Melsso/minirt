@@ -15,6 +15,8 @@ SRC		:=	check.c \
 			utils.c \
 			main.c \
 			check_utils.c \
+			check_utils1.c \
+			get_next_line.c \
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 OBJ = $(SRC:.c=.o)

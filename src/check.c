@@ -6,7 +6,7 @@
 /*   By: smallem <smallem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 17:36:10 by smallem           #+#    #+#             */
-/*   Updated: 2023/10/21 20:18:46 by smallem          ###   ########.fr       */
+/*   Updated: 2023/10/26 19:43:21 by smallem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	open_file(char *file_name)
 		;
 	if (i < 3)
 		return (0);
-	if (!ft_strncmp(&file_name[i - 3], ".rt", 3))
+	if (!ft_strncmp(&file_name[i - 4], ".rt", 3))
 		return (0);
 	i = open(file_name, O_RDONLY);
 	if (i == -1)
@@ -76,7 +76,7 @@ static void	fill_mat(int fd, t_data *data, int size)
 	init_data(data);
 }
 
-int	check_input(int fd, t_data *data, char *file_name)
+void	check_input(int fd, t_data *data, char *file_name)
 {
 	char	*tmp;
 	int		size;
@@ -95,7 +95,7 @@ int	check_input(int fd, t_data *data, char *file_name)
 	data->mat = malloc(sizeof(char *) * (size + 1));
 	close(fd);
 	if (!data->mat)
-		ft_ex(1, "MALLOC ERROR", NULL, NULL)
+		ft_ex(1, "MALLOC ERROR", NULL, NULL);
 	data->mat[size] = NULL;
 	fd = open(file_name, O_RDONLY);
 	if (!fd)
